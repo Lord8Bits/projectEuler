@@ -55,24 +55,17 @@ def pgcd(*numbers : int):
         common_state = False
         for num in unique_numbers:
             temp = num
-            print(temp)
             for prime in factors:
                 exponent = 0
-                print('Prime factorization: ',prime)
                 while not temp % prime and temp > 1:
                     exponent += 1
-                    print('exponent: ', exponent)
                     temp //= prime
-                    print(temp)
                 if exponent and exponent < factors[prime]:
                     common_state = True
                     factors[prime] = exponent
-                    print(f'The prime is {prime} and its exponent is {exponent}')
         pgcd = 1
         if common_state:
             for prime in factors:
-                print(prime)
-                print(factors[prime])
                 pgcd *= prime**factors[prime]
 
         return pgcd
