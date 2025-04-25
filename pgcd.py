@@ -1,15 +1,15 @@
 from math import prod, gcd
-def pgcd(*numbers : int):
+def pgcd(*numbers: int):
     """
-    this function will first take the square root of the smallest number to generate a Sieve
-    of Eratosthenes, then find its factors and use them to check whether they are also factors of the remaining numbers and whether they hold the same count.
-    Finally, it returns t he PGCD by finding the minimum of all potential products of factors from each number.
+    This function will first take the square root of the smallest number to generate a Sieve
+    of Eratosthenes, then find its factors and use them to check whether they are also factors of the remaining numbers.
+    Finally, it returns the PGCD by calculating the product of all common factors with their respective exponents.
 
     Args:
-        numbers (int): The numbers to find their PGCD
+        numbers (int): The integers to find their PGCD
     
     Returns:
-        int: The PGCD
+        int: The PGCD of the integers
     """
     # Edge case 1:
     if not numbers:
@@ -52,7 +52,7 @@ def pgcd(*numbers : int):
         # Checking the number of factors
         potential_pgcd = []
         new_factors = {}
-        common_state = False
+        is_thereCommon = False
         for num in unique_numbers:
             temp = num
             for prime in factors:
@@ -61,10 +61,10 @@ def pgcd(*numbers : int):
                     exponent += 1
                     temp //= prime
                 if exponent and exponent < factors[prime]:
-                    common_state = True
+                    is_thereCommon = True
                     factors[prime] = exponent
         pgcd = 1
-        if common_state:
+        if is_thereCommon:
             for prime in factors:
                 pgcd *= prime**factors[prime]
 
@@ -72,5 +72,5 @@ def pgcd(*numbers : int):
     else:
         return numbers[0]
 
-print(pgcd(456789, 98976, 99928,9390))
-print(gcd(456789, 98976, 99928,9390))
+print(pgcd(1000000,999999))
+print(gcd(1000000,999999))
