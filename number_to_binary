@@ -1,0 +1,28 @@
+def even_exponentiation(n, x = 2, exponent=1):
+    if x == n:
+        return True , exponent
+    if x > n:
+        return False
+    exponent += 1
+    return even_exponentiation(n, x*2, exponent)
+
+def convert_to_binary(n): # Transforms a dicimal number into a binary
+    if n == 0:
+        return 0
+    is_basetwo = even_exponentiation(n)
+    
+    if is_basetwo:
+        return '1'+(is_basetwo[1])*'0'
+    
+    binary_column = ''
+    while n > 0: # calculates number of digits or columns there will be
+        if n % 2:
+            binary_column += '1'
+            n //= 2
+        else:
+            binary_column += '0'
+            n //= 2
+
+    return binary_column[::-1]
+
+print(convert_to_binary(5))
